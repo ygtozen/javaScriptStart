@@ -48,3 +48,15 @@ let sayi2 = 20
 sayi1 = sayi2
 sayi2 = 100
 console.log("sayi1 : " + sayi1);
+
+function addToCart4(products) {
+    console.log(products);
+}
+
+let products = [
+    {productName: "Elma", unitPrice: 10, quantity: 5},
+    {productName: "Armut", unitPrice: 10, quantity: 5},
+    {productName: "Karpuz", unitPrice: 10, quantity: 5}
+];
+
+addToCart4(products);
