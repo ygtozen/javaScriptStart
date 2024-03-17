@@ -16,7 +16,12 @@ cart.map(product => { // Birden fazla işlem yaptırmak istediğimizde {} parent
 });
 console.log("</ul>");
 
+let total = cart.reduce((acc, product) => acc + product.unitPrice, 0);
+console.log("Total unitPice : " + total);
 
+// FILTER ==>
+let quantityOver2 = cart.filter(product => product.quantity > 2);
+console.log(quantityOver2);
 
 
 function addToCart(sepet) {
