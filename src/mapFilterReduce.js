@@ -37,3 +37,6 @@ function sayiTopla(number) {
 }
 sayiTopla(sayi);
 console.log(sayi);
+
+console.log("-----------------");
+console.log("Map, Filter, Reduce Tekrar");
