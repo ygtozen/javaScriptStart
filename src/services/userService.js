@@ -43,7 +43,7 @@ export default class UserService {
             }
         }
 
-        if(Number.isNaN(Number.parseInt(user.age))) { // age sayı değilse 
+        if(Number.isNaN(Number.parseInt(+user.age))) { // age sayı değilse 
             hasErrors = true
             this.errors.push(new DataError(`Validation problem. ${user.age} is not a number`, user));
         } 
@@ -61,20 +61,54 @@ export default class UserService {
                         new DataError(`Validation problem. Field is required ${field}`, user));
             }
         }
+
+        if(Number.isNaN(Number.parseInt(user.age))) { // age sayı değilse 
+            hasErrors = true
+            this.errors.push(new DataError(`Validation problem. ${user.age} is not a number`, user));
+        } 
+
         return hasErrors;
     }
 
-    add(user) {
-        //this.users.push(user);
+    add(user) { // type'a göre ekleme yaptık
+       switch (user.type) {
+        case "customer":
+            if(!this.checkCustomerValidityForErrors(user)) { 
+                this.customers.push(user);
+            }
+            break;
+        case "employee":
+            if(!this.checkEmployeeValidityForErrors(user)) { 
+                this.employees.push(user);
+            }
+            break;
+       
+        default:
+            this.errors.push(new DataError("This user cannot added. Wrong user type", user)); 
+            break;
+       }
         this.loggerService.log(user)
     }
 
     list() {
-        //return this.users;
+        return this.customers;
     }
 
     getById(id) {
-        //return this.users.find(u => u.id === id);
+        return this.customers.find(u => u.id === id);
+    }
+
+    // shorting - sıralama
+    getCustomersSorted() {
+        return this.customers.sort((customer1, customer2) => {
+            if(customer1.firstName > customer2.firstName) {
+                return 1;
+            } else if(customer1.firstName === customer2.firstName) {
+                return 0;
+            } else {
+                return -1;
+            }
+        });
     }
 
 }
