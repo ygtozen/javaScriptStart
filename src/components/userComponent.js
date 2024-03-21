@@ -17,9 +17,13 @@ userService.add(user2);
 console.log(userService.list());
 console.log(userService.getById(1));
 
-
-
 // prototyping
 let customer = {id:1, firstName:"Yiğit"};
 customer.lastName = "Özen";
 console.log(customer.lastName);
+
+console.log("-------------");
+userService.load();
+console.log(userService.customers); // customer[] - userService
+console.log(userService.employees); // employee[] - userService
+console.log(userService.errors); // errors[] - userService
